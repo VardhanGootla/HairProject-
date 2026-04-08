@@ -124,7 +124,7 @@ export default function Home() {
               </p>
             </div>
             <a
-              href="#assesment"
+              href="assesment"
               className="inline-flex items-center justify-center rounded-xl bg-brand-green text-brand-white px-5 py-3 text-sm font-semibold hover:brightness-95 hover:scale-[1.02] active:scale-[0.99] transition duration-300"
             >
               Get started

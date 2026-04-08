@@ -31,17 +31,30 @@ export default function Predict() {
     e.preventDefault();
     setIsLoading(true);
 
-    // This is where you connect to your Flask backend!
+    // 1. Create a copy of the form data to send to the backend
+    const payloadToSend = {
+        ...formData,
+        Age: parseInt(formData.Age) // Ensure Age is sent as a number
+    };
+
+    // 2. CONVERT COMPLEX DROPDOWNS TO "Yes"
+    // If it's not "No" and not empty, it must be a specific condition, so change it to "Yes"
+    if (payloadToSend['Medical Conditions'] !== 'No' && payloadToSend['Medical Conditions'] !== '') {
+        payloadToSend['Medical Conditions'] = 'Yes';
+    }
+    
+    if (payloadToSend['Medications & Treatments'] !== 'No' && payloadToSend['Medications & Treatments'] !== '') {
+        payloadToSend['Medications & Treatments'] = 'Yes';
+    }
+
     try {
-      const response = await fetch('http://127.0.0.1:5000/predict', {
+      const response = await fetch('http://localhost:5000/predict', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({
-            ...formData,
-            Age: parseInt(formData.Age) // Ensure Age is sent as a number
-        }),
+        // 3. Send the modified payload instead of the raw formData
+        body: JSON.stringify(payloadToSend), 
       });
 
       const data = await response.json();
@@ -65,7 +78,7 @@ export default function Predict() {
             Hair Health <span className="text-brand-green">Assessment</span>
           </h1>
           <p className="mt-4 text-base md:text-lg text-brand-muted leading-relaxed">
-            Fill out this quick clinical assessment to understand your hair fall risk and get a personalized care plan.
+            Fill out this quick clinical assessment to understand your hair fall and get a personalized care plan.
           </p>
         </div>
 
@@ -174,11 +187,11 @@ export default function Predict() {
                 <select name="Medical Conditions" required value={formData['Medical Conditions']} onChange={handleChange} className="w-full rounded-xl border border-brand-border bg-brand-white px-4 py-3 text-sm focus:border-brand-green focus:outline-none transition duration-300">
                   <option value="" disabled>Select an option</option>
                   <option value="No">None</option>
-                  <option value="Yes">Alopecia Areata</option>
-                  <option value="Yes">Thyroid Problems</option>
-                  <option value="Yes">Scalp Infection</option>
-                  <option value="Yes">Psoriasis</option>
-                  <option value="Yes">Dermatitis</option>
+                  <option value="Alopecia Areata">Alopecia Areata</option>
+                  <option value="Thyroid Problems">Thyroid Problems</option>
+                  <option value="Scalp Infection">Scalp Infection</option>
+                  <option value="Psoriasis">Psoriasis</option>
+                  <option value="Dermatitis">Dermatitis</option>
                 </select>
               </div>
 
@@ -188,10 +201,10 @@ export default function Predict() {
                 <select name="Medications & Treatments" required value={formData['Medications & Treatments']} onChange={handleChange} className="w-full rounded-xl border border-brand-border bg-brand-white px-4 py-3 text-sm focus:border-brand-green focus:outline-none transition duration-300">
                   <option value="" disabled>Select an option</option>
                   <option value="No">None</option>
-                  <option value="Yes">Chemotherapy</option>
-                  <option value="Yes">Heart Medication</option>
-                  <option value="Yes">Antidepressants</option>
-                  <option value="Yes">Steroids</option>
+                  <option value="Chemotherapy">Chemotherapy</option>
+                  <option value="Heart Medication">Heart Medication</option>
+                  <option value="Antidepressants">Antidepressants</option>
+                  <option value="Steroids">Steroids</option>
                 </select>
               </div>
 

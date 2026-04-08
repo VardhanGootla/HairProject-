@@ -65,5 +65,27 @@ def predict():
     except Exception as e:
         return jsonify({'error': str(e)}), 500
 
+@app.route('/get_suggestions', methods=['POST'])
+def get_suggestions():
+    try:
+        user_data = request.json
+        stage = user_data.get('Stage')
+        
+        # 1. Get the base lifestyle suggestions
+        suggestions = generate_suggestions(user_data)
+        
+        # 2. Add Stage-Specific Medical advice
+        if stage in ['1', '2']:
+            suggestions.insert(0, "Stage Treatment: At this early stage, topical treatments like Minoxidil are highly effective.")
+        elif stage in ['3', '4', '5']:
+            suggestions.insert(0, "Stage Treatment: Consider consulting a doctor for oral medications (like Finasteride) combined with Minoxidil, or PRP therapy.")
+        elif stage in ['6', '7']:
+            suggestions.insert(0, "Stage Treatment: At this advanced stage, topical treatments may have limited effect. Hair transplant surgery is typically the most viable option for restoration.")
+            
+        return jsonify({'suggestions': suggestions})
+        
+    except Exception as e:
+        return jsonify({'error': str(e)}), 500
+
 if __name__ == '__main__':
     app.run(debug=True, port=5000)
