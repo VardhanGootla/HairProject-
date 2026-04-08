@@ -29,7 +29,7 @@ const Navbar = () => {
 
         <div className="flex items-center gap-3">
   <Link
-    to="/#consultation"
+    to="/#assesment"
     className="relative inline-flex items-center justify-center rounded-xl 
     bg-gradient-to-r from-[#00A67E] to-[#00C896] 
     text-white px-5 py-2.5 text-sm font-semibold 
@@ -38,7 +38,7 @@ const Navbar = () => {
     hover:scale-[1.04] active:scale-[0.97] 
     transition-all duration-300 ease-out"
   >
-    Start Consultation
+    Take Assesment
   </Link>
 </div>
       </div>

@@ -18,10 +18,10 @@ export default function Home() {
 
               <div className="mt-8 flex flex-col sm:flex-row gap-3">
                 <a
-                  href="#consultation"
+                  href="#assesment"
                   className="inline-flex items-center justify-center rounded-xl bg-brand-green text-brand-white px-6 py-3 text-sm font-semibold shadow-soft hover:brightness-95 hover:scale-[1.02] active:scale-[0.99] transition duration-300"
                 >
-                  Start Consultation
+                  Take Assesment
                 </a>
                 <a
                   href="#how"
@@ -124,7 +124,7 @@ export default function Home() {
               </p>
             </div>
             <a
-              href="#consultation"
+              href="#assesment"
               className="inline-flex items-center justify-center rounded-xl bg-brand-green text-brand-white px-5 py-3 text-sm font-semibold hover:brightness-95 hover:scale-[1.02] active:scale-[0.99] transition duration-300"
             >
               Get started
