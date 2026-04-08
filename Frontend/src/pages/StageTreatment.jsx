@@ -1,8 +1,15 @@
 import React, { useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, useLocation, Link} from 'react-router-dom';
+
 
 export default function StageTreatment() {
   const { stageId } = useParams(); // Gets the stage number from the URL
+  // 1. Catch the gender passed from Assessment.jsx
+  const location = useLocation();
+  const gender = location.state?.gender; 
+
+  // 2. Check if this is a severe stage requiring a doctor
+  const isSevereStage = (gender === 'Male' && (stageId === '7' || stageId === '6')) || (gender === 'Female' && stageId === '4');
   const [suggestions, setSuggestions] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
 
@@ -64,7 +71,45 @@ export default function StageTreatment() {
       setIsLoading(false);
     }
   };
-  
+
+  if (isSevereStage) {
+    return (
+      <div className="min-h-screen bg-brand-bg py-16 md:py-24">
+        <div className="max-w-2xl mx-auto px-6 text-center animate-fade-in">
+          <div className="bg-brand-white p-10 rounded-2xl border border-brand-border shadow-card">
+            
+            <div className="h-20 w-20 bg-red-50 text-red-500 rounded-full flex items-center justify-center mx-auto mb-6 text-4xl">
+              🩺
+            </div>
+            
+            <h2 className="text-3xl font-semibold text-brand-text mb-4">
+              Medical Consultation Recommended
+            </h2>
+            
+            <p className="text-brand-muted text-lg leading-relaxed mb-8">
+              Based on your selection (Stage {stageId}), lifestyle changes and standard routines are usually not enough to restore hair density. We highly recommend consulting with a clinical expert to discuss advanced restorative options.
+            </p>
+            
+            <Link 
+              to="/contact" 
+              className="inline-block w-full sm:w-auto bg-brand-green text-brand-white font-semibold px-8 py-4 rounded-xl hover:brightness-95 hover:scale-[1.02] transition duration-300 shadow-soft"
+            >
+              Book a Free Doctor Consultation
+            </Link>
+
+            <button 
+               onClick={() => window.history.back()}
+               className="mt-6 block w-full text-sm font-semibold text-brand-muted hover:text-brand-text transition"
+            >
+               Go back to Assessment
+            </button>
+            
+          </div>
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div className="min-h-screen bg-brand-bg py-16">
       <div className="max-w-3xl mx-auto px-6">

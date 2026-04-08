@@ -32,6 +32,11 @@ export default function Assessment() {
 
   const stagesToDisplay = userInfo.gender === 'Male' ? maleStages : femaleStages;
 
+  const handleStageClick = (stageId) => {
+    // Navigate to the stage page, but secretly pass the user's gender in the background!
+    navigate(`/stage/${stageId}`, { state: { gender: userInfo.gender } });
+  };
+
   return (
     <div className="min-h-screen bg-brand-bg py-16 md:py-24">
       <div className="max-w-4xl mx-auto px-6 md:px-12">
@@ -85,7 +90,7 @@ export default function Assessment() {
               {stagesToDisplay.map((stage) => (
                 <div 
                   key={stage.id} 
-                  onClick={() => navigate(`/stage/${stage.id}`)}
+                  onClick={() => handleStageClick(stage.id)}
                   className="cursor-pointer bg-brand-white rounded-xl border border-brand-border p-4 shadow-soft hover:shadow-card transition"
                 >
                   <img src={stage.img} alt={stage.title} className="w-full h-32 object-cover rounded-lg mb-4 bg-gray-100" />
