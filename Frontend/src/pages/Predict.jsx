@@ -174,11 +174,11 @@ export default function Predict() {
                 <select name="Medical Conditions" required value={formData['Medical Conditions']} onChange={handleChange} className="w-full rounded-xl border border-brand-border bg-brand-white px-4 py-3 text-sm focus:border-brand-green focus:outline-none transition duration-300">
                   <option value="" disabled>Select an option</option>
                   <option value="No">None</option>
-                  <option value="Alopecia Areata">Alopecia Areata</option>
-                  <option value="Thyroid Problems">Thyroid Problems</option>
-                  <option value="Scalp Infection">Scalp Infection</option>
-                  <option value="Psoriasis">Psoriasis</option>
-                  <option value="Dermatitis">Dermatitis</option>
+                  <option value="Yes">Alopecia Areata</option>
+                  <option value="Yes">Thyroid Problems</option>
+                  <option value="Yes">Scalp Infection</option>
+                  <option value="Yes">Psoriasis</option>
+                  <option value="Yes">Dermatitis</option>
                 </select>
               </div>
 
@@ -188,10 +188,10 @@ export default function Predict() {
                 <select name="Medications & Treatments" required value={formData['Medications & Treatments']} onChange={handleChange} className="w-full rounded-xl border border-brand-border bg-brand-white px-4 py-3 text-sm focus:border-brand-green focus:outline-none transition duration-300">
                   <option value="" disabled>Select an option</option>
                   <option value="No">None</option>
-                  <option value="Chemotherapy">Chemotherapy</option>
-                  <option value="Heart Medication">Heart Medication</option>
-                  <option value="Antidepressants">Antidepressants</option>
-                  <option value="Steroids">Steroids</option>
+                  <option value="Yes">Chemotherapy</option>
+                  <option value="Yes">Heart Medication</option>
+                  <option value="Yes">Antidepressants</option>
+                  <option value="Yes">Steroids</option>
                 </select>
               </div>
 
