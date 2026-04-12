@@ -31,6 +31,10 @@ def generate_suggestions(user_data):
         
     return suggestions
 
+@app.route('/')
+def home():
+    return "Flask API is running!"    
+
 @app.route('/predict', methods=['POST'])
 def predict():
     try:
