@@ -24,10 +24,10 @@ export default function Assessment() {
 
   // Female Cards (Ludwig Scale roughly)
   const femaleStages = [
-    { id: 1, title: "Stage 1", desc: "Mild thinning at the part", img: "https://via.placeholder.com/150?text=Female+Stage+1" },
-    { id: 2, title: "Stage 2", desc: "Increased widening of the part", img: "https://via.placeholder.com/150?text=Female+Stage+2" },
-    { id: 3, title: "Stage 3", desc: "Diffuse thinning across the top", img: "https://via.placeholder.com/150?text=Female+Stage+3" },
-    { id: 4, title: "Stage 4", desc: "Extensive thinning/visible scalp", img: "https://via.placeholder.com/150?text=Female+Stage+4" },
+    { id: 1, title: "Stage 1", desc: "Mild thinning at the part", img: "src/assets/femaleS1.png" },
+    { id: 2, title: "Stage 2", desc: "Increased widening of the part", img: "src/assets/femaleS2.png" },
+    { id: 3, title: "Stage 3", desc: "Diffuse thinning across the top", img: "src/assets/femaleS3.png" },
+    // { id: 4, title: "Stage 4", desc: "Extensive thinning/visible scalp", img: "src/assets/femaleS4.png" },
   ];
 
   const stagesToDisplay = userInfo.gender === 'Male' ? maleStages : femaleStages;
